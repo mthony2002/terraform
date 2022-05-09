@@ -16,23 +16,23 @@ variable "location" {
 variable "resource_group_name" {
   type        = string
   description = "Resource Group name to where resources are going to be deployed"
-  default     = "test"
+  default     = "rgn_module05"
 }
 variable "container_group_name" {
   type        = string
   description = "aci name"
-  default     = "nginx"
+  default     = "nginx_module05"
 }
 variable "container_group_dns" {
   type        = string
   description = "aci name"
-  default     = "nginx"
+  default     = "nginx_module05"
 }
-resource "azurerm_resource_group" "demo" {
+resource "azurerm_resource_group" "rg_module05" {
   name     = var.resource_group_name
   location = var.location
 }
-resource "azurerm_container_group" "aci" {
+resource "azurerm_container_group" "cont_module05" {
   name                = var.container_group_name
   resource_group_name = var.resource_group_name
   location            = var.location
@@ -50,6 +50,8 @@ resource "azurerm_container_group" "aci" {
     }
   }
   depends_on = [
-    azurerm_resource_group.demo,
+    azurerm_resource_group.rg_module05,
   ]
 }
+
+
